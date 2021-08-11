@@ -55,4 +55,30 @@ public class EmployeeRepository {
                 employee.getGender(), employee.getSalary());
         employees.add(newEmployee);
     }
+
+    public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
+        return employees
+                .stream()
+                .filter(employee -> employee.getId().equals(employeeId))
+                .findFirst()
+                .map(employee -> updateEmployeeInformation(employee, employeeToBeUpdated))
+                .orElse(null);
+
+    }
+
+    private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
+        if (employeeToBeUpdated.getName() != null) {
+            employee.setName(employeeToBeUpdated.getName());
+        }
+        if (employeeToBeUpdated.getAge() != null) {
+            employee.setAge(employeeToBeUpdated.getAge());
+        }
+        if (employeeToBeUpdated.getGender() != null) {
+            employee.setGender(employeeToBeUpdated.getGender());
+        }
+        if (employeeToBeUpdated.getSalary() != null) {
+            employee.setSalary(employeeToBeUpdated.getSalary());
+        }
+        return employee;
+    }
 }

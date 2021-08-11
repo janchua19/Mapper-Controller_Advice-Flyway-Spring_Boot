@@ -109,5 +109,18 @@ public class EmployeesServiceTest {
 
     }
 
+    @Test
+    public void should_update_new_employee_when_updateEmployee_given_updated_employee_details() {
+        //given
+        Employee updatedEmployee = new Employee(1, "Cillian", 47, "Male", 20000);
+        given(employeeRepository.updateEmployee(1, updatedEmployee)).willReturn(updatedEmployee);
+        //when
+        Employee actualEmployee = employeeService.updateEmployee(1, updatedEmployee);
+
+        //then
+
+        assertEquals(updatedEmployee, actualEmployee);
+    }
+
 
 }

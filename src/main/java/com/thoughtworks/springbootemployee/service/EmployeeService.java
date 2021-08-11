@@ -38,4 +38,8 @@ public class EmployeeService {
     public void addEmployee(Employee employee) {
         employeeRepository.addEmployee(employee);
     }
+
+    public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
+        return employeeRepository.updateEmployee(employeeId, employeeToBeUpdated);
+    }
 }
