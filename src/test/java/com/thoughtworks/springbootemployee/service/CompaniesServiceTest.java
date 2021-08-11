@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.BDDMockito.given;
 
@@ -31,8 +32,8 @@ public class CompaniesServiceTest {
         Employee employee2 = new Employee(2, "Rhea", 44, "Female", 30000);
         List<Company> companies = new ArrayList<>();
 
-        companies.add(new Company(1,"ABC", 1, Collections.singletonList(employee1)));
-        companies.add(new Company(2,"DEF", 1, Collections.singletonList(employee2)));
+        companies.add(new Company(1, "ABC", 1, Collections.singletonList(employee1)));
+        companies.add(new Company(2, "DEF", 1, Collections.singletonList(employee2)));
         given(companyRepository.getAllCompanies()).willReturn(companies);
         //when
         List<Company> actualCompanies = companyService.getAllCompanies();
@@ -40,6 +41,22 @@ public class CompaniesServiceTest {
         //then
         assertIterableEquals(companies, actualCompanies);
 
+
+    }
+
+
+    @Test
+    public void should_return_company_with_id_1_when_findCompanyById_given_id_1() {
+
+        //given
+        Employee employee = new Employee(2, "Rhea", 44, "Female", 30000);
+        Company company = new Company(1, "ABC", 1, Collections.singletonList(employee));
+        given(companyRepository.getCompanyById(1)).willReturn(company);
+        //when
+        Company actualCompany = companyService.getCompanyById(1);
+
+        //then
+        assertEquals(company, actualCompany);
 
     }
 }
