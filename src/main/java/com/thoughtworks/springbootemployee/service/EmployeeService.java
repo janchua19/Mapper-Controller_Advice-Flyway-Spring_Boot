@@ -30,4 +30,8 @@ public class EmployeeService {
     public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
         return employeeRepository.findEmployeesByPagination(pageIndex, pageSize);
     }
+
+    public List<Employee> findEmployeesByGender(String gender) {
+        return employeeRepository.findEmployeesByGender(gender);
+    }
 }
