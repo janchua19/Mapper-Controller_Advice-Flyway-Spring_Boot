@@ -39,4 +39,10 @@ public class CompanyRepository {
     public Company getCompanyById(Integer companyId) {
         return companies.stream().filter(company -> company.getCompanyId().equals(companyId)).findFirst().orElse(null);
     }
+
+    public List<Employee> getEmployeesByCompanyId(Integer companyId) {
+        Company filteredCompany = getCompanyById(companyId);
+        return filteredCompany.getEmployees();
+
+    }
 }
