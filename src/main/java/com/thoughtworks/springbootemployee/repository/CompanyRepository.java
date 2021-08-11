@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class CompanyRepository {
 
-   private List<Company> companies = new ArrayList<>();
+    private List<Company> companies = new ArrayList<>();
     private EmployeeRepository employeeRepository = new EmployeeRepository();
 
     public CompanyRepository() {
@@ -26,13 +26,17 @@ public class CompanyRepository {
         defEmployees.add(employees.get(5));
         defEmployees.add(employees.get(6));
 
-        companies.add(new Company("ABC", 5, abcEmployees));
-        companies.add(new Company("DEF", 2, defEmployees));
+        companies.add(new Company(1, "ABC", 5, abcEmployees));
+        companies.add(new Company(2, "DEF", 2, defEmployees));
 
     }
 
     public List<Company> getAllCompanies() {
         return companies;
 
+    }
+
+    public Company getCompanyById(Integer companyId) {
+        return null;
     }
 }

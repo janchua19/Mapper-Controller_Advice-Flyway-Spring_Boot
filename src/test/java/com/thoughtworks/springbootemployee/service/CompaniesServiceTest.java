@@ -31,8 +31,8 @@ public class CompaniesServiceTest {
         Employee employee2 = new Employee(2, "Rhea", 44, "Female", 30000);
         List<Company> companies = new ArrayList<>();
 
-        companies.add(new Company("ABC", 1, Collections.singletonList(employee1)));
-        companies.add(new Company("DEF", 1, Collections.singletonList(employee2)));
+        companies.add(new Company(1,"ABC", 1, Collections.singletonList(employee1)));
+        companies.add(new Company(2,"DEF", 1, Collections.singletonList(employee2)));
         given(companyRepository.getAllCompanies()).willReturn(companies);
         //when
         List<Company> actualCompanies = companyService.getAllCompanies();
