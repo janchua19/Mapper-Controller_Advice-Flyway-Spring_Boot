@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class EmployeeRepository {
@@ -33,6 +34,15 @@ public class EmployeeRepository {
                 .filter(employee -> employee.getId().equals(employeeId))
                 .findFirst()
                 .orElse(null);
+
+    }
+
+    public List<Employee> findEmployeeByPagination(Integer pageIndex, Integer pageSize) {
+        return employees
+                .stream()
+                .skip((long) (pageIndex - 1) * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
 
     }
 }

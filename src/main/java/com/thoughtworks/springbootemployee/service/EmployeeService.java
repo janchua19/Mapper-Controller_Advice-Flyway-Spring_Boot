@@ -26,4 +26,8 @@ public class EmployeeService {
     public Employee findEmployeeById(Integer employeeId) {
         return employeeRepository.findEmployeeById(employeeId);
     }
+
+    public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
+        return employeeRepository.findEmployeeByPagination(pageIndex, pageSize);
+    }
 }

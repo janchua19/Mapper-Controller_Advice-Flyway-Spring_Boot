@@ -20,9 +20,6 @@ public class EmployeesController {
     @Autowired
     private EmployeeService employeeService;
 
-    public EmployeesController(EmployeeService employeeService) {
-        //this.employeeService = employeeService;
-    }
 
     @GetMapping
     public List<Employee> getAllEmployees() {
@@ -36,11 +33,8 @@ public class EmployeesController {
 
     @GetMapping(params = {"pageIndex", "pageSize"})
     public List<Employee> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
-        return employees
-                .stream()
-                .skip((pageIndex - 1) * pageSize)
-                .limit(pageSize)
-                .collect(Collectors.toList());
+
+        return employeeService.findEmployeesByPagination(pageIndex, pageSize);
     }
 
 
