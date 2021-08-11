@@ -13,4 +13,16 @@ public class Company {
         this.employeesNumber = employeesNumber;
         this.employees = employees;
     }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public Integer getEmployeesNumber() {
+        return employeesNumber;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 }

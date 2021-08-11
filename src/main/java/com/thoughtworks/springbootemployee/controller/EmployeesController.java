@@ -13,10 +13,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/employees")
 public class EmployeesController {
 
-
-    private List<Employee> employees = new ArrayList<>();
-
-
     @Autowired
     private EmployeeService employeeService;
 
