@@ -16,6 +16,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class CompaniesServiceTest {
@@ -92,6 +94,22 @@ public class CompaniesServiceTest {
 
         //then
         assertEquals(Collections.singletonList(company), actualCompanies);
+
+
+    }
+
+    @Test
+    public void should_add_new_company_when_addCompany_given_new_company_details() {
+
+        //given
+        Company companyToBeAdded = new Company(1, "ABC", 1,
+                Collections.singletonList(new Employee(1, "CL", 21, "Female", 200000)));
+
+        //when
+        companyService.addCompany(companyToBeAdded);
+
+        //then
+        verify(companyRepository, times(1)).addCompany(companyToBeAdded);
 
 
     }
