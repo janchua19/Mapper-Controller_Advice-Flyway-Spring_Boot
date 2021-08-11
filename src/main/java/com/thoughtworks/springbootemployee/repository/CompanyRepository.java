@@ -54,4 +54,14 @@ public class CompanyRepository {
                 .limit(pageSize)
                 .collect(Collectors.toList());
     }
+
+    public void addCompany(Company company) {
+        Company newCompany = new Company();
+        newCompany.setCompanyId(companies.size() + 1);
+        newCompany.setCompanyName(company.getCompanyName());
+        newCompany.setEmployees(company.getEmployees());
+        newCompany.setEmployeesNumber(company.getEmployeesNumber());
+
+        companies.add(newCompany);
+    }
 }

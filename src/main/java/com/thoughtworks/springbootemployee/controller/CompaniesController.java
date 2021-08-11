@@ -39,4 +39,10 @@ public class CompaniesController {
 
     }
 
+    @PostMapping
+    public void addCompany(@RequestBody Company company) {
+        companyService.addCompany(company);
+
+    }
+
 }
