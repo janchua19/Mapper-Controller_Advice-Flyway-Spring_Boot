@@ -15,6 +15,10 @@ public class Employee {
         this.gender = gender;
         this.salary = salary;
     }
+
+    public Employee() {
+    }
+
     public Integer getId() {
         return id;
     }

@@ -37,21 +37,42 @@ public class EmployeesController {
         return employeeService.findEmployeesByPagination(pageIndex, pageSize);
     }
 
-
     @GetMapping(params = "gender")
     public List<Employee> findEmployeesByGender(@RequestParam(required = true) String gender) {
 
         return employeeService.findEmployeesByGender(gender);
     }
 
-
     @PostMapping
     public void addEmployee(@RequestBody Employee employee) {
-        Employee newEmployee = new Employee(employees.size() + 1, employee.getName(), employee.getAge(),
-                employee.getGender(), employee.getSalary());
-        employees.add(newEmployee);
+        employeeService.addEmployee(employee);
 
     }
 
+    @PutMapping(path = "/{employeeId}")
+    public Employee updateEmployee(@PathVariable Integer employeeId, @RequestBody Employee employeeToBeUpdated) {
+        return employees
+                .stream()
+                .filter(employee -> employee.getId().equals(employeeId))
+                .findFirst()
+                .map(employee -> updateEmployeeInformation(employee, employeeToBeUpdated))
+                .orElse(null);
+    }
+
+    private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
+        if (employeeToBeUpdated.getName() != null) {
+            employee.setName(employeeToBeUpdated.getName());
+        }
+        if (employeeToBeUpdated.getAge() != null) {
+            employee.setAge(employeeToBeUpdated.getAge());
+        }
+        if (employeeToBeUpdated.getGender() != null) {
+            employee.setGender(employeeToBeUpdated.getGender());
+        }
+        if (employeeToBeUpdated.getSalary() != null) {
+            employee.setSalary(employeeToBeUpdated.getSalary());
+        }
+        return employee;
+    }
 }
 
