@@ -15,6 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeesServiceTest {
@@ -93,6 +94,18 @@ public class EmployeesServiceTest {
         List<Employee> actualEmployees = employeeService.findEmployeesByGender("male");
         //then
         assertEquals(employees, actualEmployees);
+
+    }
+
+    @Test
+    public void should_add_new_employee_when_addEmployee_given_employee_details() {
+        //given
+        Employee employeeToBeAdded = new Employee(2, "Carms", 21, "Female", 1000000);
+        //when
+        employeeService.addEmployee(employeeToBeAdded);
+        //then
+        verify(employeeRepository, times(1)).addEmployee(employeeToBeAdded);
+
 
     }
 
