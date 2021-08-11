@@ -28,6 +28,6 @@ public class EmployeeService {
     }
 
     public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
-        return employeeRepository.findEmployeeByPagination(pageIndex, pageSize);
+        return employeeRepository.findEmployeesByPagination(pageIndex, pageSize);
     }
 }

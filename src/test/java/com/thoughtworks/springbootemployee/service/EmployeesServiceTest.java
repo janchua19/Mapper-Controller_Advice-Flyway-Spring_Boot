@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -63,7 +64,23 @@ public class EmployeesServiceTest {
 
     }
 
+    @Test
+    public void should_return_employee_with_id_1_when_findEmployeeByPagination_given_pageIndex_1_and_pageSize_1() {
 
+        //given
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Ian", 44, "Female", 20000));
+        employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
+        given(employeeRepository.findEmployeesByPagination(1, 1))
+                .willReturn(Collections.singletonList(employees.get(0)));
+
+        //when
+        List<Employee> actualEmployees = employeeService.findEmployeesByPagination(1, 1);
+        //then
+
+        assertEquals(Collections.singletonList(employees.get(0)), actualEmployees);
+
+    }
 
 
 }
