@@ -3,6 +3,7 @@ package com.thoughtworks.springbootemployee.service;
 import com.thoughtworks.springbootemployee.model.Company;
 import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.repository.CompanyRepository;
+import net.bytebuddy.matcher.FilterableList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -125,5 +126,22 @@ public class CompaniesServiceTest {
 
         assertEquals(companyToUpdate, actualCompany);
 
+    }
+
+    @Test
+    public void should_return_all_employees_when_deleteCompany_given_companyId_to_delete_1() {
+        //given
+
+        List<Company> companies = new ArrayList<>();
+        companies.add(new Company(1, "ABC", 1, Collections.singletonList(new Employee(1, "CL", 21, "Female", 12222))));
+        companies.add(new Company(2, "ABCsas", 1, Collections.singletonList(new Employee(1, "Carms", 21, "Female", 12222))));
+        given(companyRepository.deleteCompany(1)).willReturn(companies);
+        //when
+
+        List<Company> actualCompanies = companyService.deleteCompany(1);
+
+        //then
+
+        assertEquals(companies, actualCompanies);
     }
 }
