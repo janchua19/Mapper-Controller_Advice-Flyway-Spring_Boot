@@ -20,18 +20,6 @@ public class EmployeesController {
     @Autowired
     private EmployeeService employeeService;
 
-//    public EmployeesController() {
-//
-//        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
-//        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
-//        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
-//        employees.add(new Employee(4, "Red", 12, "Male", 20300));
-//        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
-//        employees.add(new Employee(6, "DM", 12, "Male", 25000));
-//        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
-//    }
-
-
     public EmployeesController(EmployeeService employeeService) {
         //this.employeeService = employeeService;
     }
@@ -43,11 +31,7 @@ public class EmployeesController {
 
     @GetMapping(path = "/{employeeId}")
     public Employee findById(@PathVariable Integer employeeId) {
-        return employees
-                .stream()
-                .filter(employee -> employee.getId().equals(employeeId))
-                .findFirst()
-                .orElse(null);
+        return employeeService.findEmployeeById(employeeId);
     }
 
     @GetMapping(params = {"pageIndex", "pageSize"})
