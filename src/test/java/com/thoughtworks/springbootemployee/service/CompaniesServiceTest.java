@@ -77,4 +77,22 @@ public class CompaniesServiceTest {
 
 
     }
+
+    @Test
+    public void should_return_employees_with_companyId_1_when_getEmployeesByPagination_given_pageIndex_1_and_pageSize_1() {
+
+        //given
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Rhea", 44, "Female", 30000));
+        employees.add(new Employee(2, "John", 44, "Male", 30000));
+        Company company = new Company(1, "ABC", 2, employees);
+        given(companyRepository.getCompaniesByPagination(1, 1)).willReturn(Collections.singletonList(company));
+        //when
+        List<Company> actualCompanies = companyService.getCompaniesByPagination(1, 1);
+
+        //then
+        assertEquals(Collections.singletonList(company), actualCompanies);
+
+
+    }
 }
