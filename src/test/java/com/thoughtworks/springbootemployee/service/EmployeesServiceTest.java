@@ -44,4 +44,24 @@ public class EmployeesServiceTest {
         assertIterableEquals(employees, actualEmployees);
 
     }
+
+    @Test
+    public void should_return_all_employees_when_findEmployeeById_given_employeeId() {
+
+        //given
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Ian", 44, "Female", 20000));
+        employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
+        given(employeeRepository.findEmployeeById(1))
+                .willReturn(employees.get(0));
+
+        //when
+        Employee actualEmployee = employeeService.findEmployeeById(1);
+        //then
+
+        assertEquals(employees.get(0), actualEmployee);
+
+    }
+
+
 }
