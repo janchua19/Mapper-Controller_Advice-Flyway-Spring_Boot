@@ -111,4 +111,19 @@ public class CompaniesServiceTest {
         verify(companyRepository, times(1)).addCompany(companyToBeAdded);
 
     }
+
+    @Test
+    public void should_update_company_with_companyId_1_when_updateCompany_given_new_company_details() {
+        //given
+        Company companyToUpdate = new Company(1, "AHAHHA", 1,
+                Collections.singletonList(new Employee(1, "Cillian", 45, "Male", 222222)));
+
+        given(companyRepository.updateCompany(1, companyToUpdate)).willReturn(companyToUpdate);
+        //when
+        Company actualCompany = companyService.updateCompany(1, companyToUpdate);
+        //then
+
+        assertEquals(companyToUpdate, actualCompany);
+
+    }
 }
