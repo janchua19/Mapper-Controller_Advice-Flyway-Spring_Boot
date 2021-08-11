@@ -45,6 +45,10 @@ public class CompanyService {
 
     public Company updateCompany(Integer companyId, Company companyToUpdate) {
 
-    return  companyRepository.updateCompany(companyId,companyToUpdate);
+        return companyRepository.updateCompany(companyId, companyToUpdate);
+    }
+
+    public List<Company> deleteCompany(Integer companyId) {
+       return companyRepository.deleteCompany(companyId);
     }
 }

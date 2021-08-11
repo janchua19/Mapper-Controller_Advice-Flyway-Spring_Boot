@@ -85,4 +85,11 @@ public class CompanyRepository {
     }
 
 
+    public List<Company> deleteCompany(Integer companyId) {
+        Company companyToDelete = getCompanyById(companyId);
+        companies.remove(companyToDelete);
+
+        return companies;
+
+    }
 }
