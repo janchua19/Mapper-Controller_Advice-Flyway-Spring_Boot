@@ -18,6 +18,9 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
+    public CompanyService() {
+    }
+
     public List<Company> getAllCompanies() {
         return companyRepository.getAllCompanies();
     }
@@ -37,5 +40,11 @@ public class CompanyService {
     public void addCompany(Company company) {
         companyRepository.addCompany(company);
 
+    }
+
+
+    public Company updateCompany(Integer companyId, Company companyToUpdate) {
+
+    return  companyRepository.updateCompany(companyId,companyToUpdate);
     }
 }

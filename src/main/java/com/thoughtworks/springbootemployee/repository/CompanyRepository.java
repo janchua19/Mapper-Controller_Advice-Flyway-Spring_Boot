@@ -64,4 +64,25 @@ public class CompanyRepository {
 
         companies.add(newCompany);
     }
+
+    public Company updateCompany(Integer companyId, Company companyToUpdate) {
+
+        return companies.stream().filter(company -> company.getCompanyId().equals(companyId)).findFirst()
+                .map(company -> updateCompanyInformation(company, companyToUpdate)).orElse(null);
+    }
+
+    private Company updateCompanyInformation(Company company, Company companyToUpdate) {
+        if (companyToUpdate.getCompanyName() != null) {
+            company.setCompanyName(companyToUpdate.getCompanyName());
+        }
+        if (companyToUpdate.getEmployeesNumber() != null) {
+            company.setEmployeesNumber(companyToUpdate.getEmployeesNumber());
+        }
+        if (companyToUpdate.getEmployees() != null) {
+            company.setEmployees(companyToUpdate.getEmployees());
+        }
+        return company;
+    }
+
+
 }
