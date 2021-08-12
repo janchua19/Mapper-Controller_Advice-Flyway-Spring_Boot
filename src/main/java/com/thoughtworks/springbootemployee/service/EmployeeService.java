@@ -4,6 +4,9 @@ import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
 import com.thoughtworks.springbootemployee.repository.OldEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,7 +41,7 @@ public class EmployeeService {
     }
 
     public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
-        return oldEmployeeRepository.findEmployeesByPagination(pageIndex, pageSize);
+        return employeeRepository.findAll(PageRequest.of(pageIndex - 1,pageSize)).getContent();
     }
 
     public List<Employee> findEmployeesByGender(String gender) {
@@ -55,8 +58,6 @@ public class EmployeeService {
     }
 
     public void deleteEmployee(Integer employeeId) {
-
-        //oldEmployeeRepository.deleteEmployee(employeeId);
         Employee employeeToDelete = findEmployeeById(employeeId);
         employeeRepository.delete(employeeToDelete);
     }
