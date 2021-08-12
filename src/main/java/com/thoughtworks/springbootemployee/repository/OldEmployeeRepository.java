@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class EmployeeRepository {
+public class OldEmployeeRepository {
 
     private List<Employee> employees = new ArrayList<>();
 
-    public EmployeeRepository() {
+    public OldEmployeeRepository() {
         employees.add(new Employee(1, "Carms", 21, "Female", 1000));
         employees.add(new Employee(2, "Jan", 12, "Male", 2000));
         employees.add(new Employee(3, "Ian", 12, "Female", 2000));

@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 public class CompanyRepository {
 
     private List<Company> companies = new ArrayList<>();
-    private EmployeeRepository employeeRepository = new EmployeeRepository();
+    private OldEmployeeRepository oldEmployeeRepository = new OldEmployeeRepository();
 
     public CompanyRepository() {
-        List<Employee> employees = employeeRepository.getEmployees();
+        List<Employee> employees = oldEmployeeRepository.getEmployees();
         List<Employee> abcEmployees = new ArrayList<>();
         abcEmployees.add(employees.get(0));
         abcEmployees.add(employees.get(1));

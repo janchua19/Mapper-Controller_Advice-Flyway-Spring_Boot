@@ -1,7 +1,7 @@
 package com.thoughtworks.springbootemployee.service;
 
 import com.thoughtworks.springbootemployee.model.Employee;
-import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
+import com.thoughtworks.springbootemployee.repository.OldEmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,7 +25,7 @@ public class EmployeesServiceTest {
 
 
     @Mock
-    private EmployeeRepository employeeRepository;
+    private OldEmployeeRepository oldEmployeeRepository;
 
     @Test
     public void should_return_all_employees_when_getAllEmployees_given_none() {
@@ -34,7 +34,7 @@ public class EmployeesServiceTest {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1, "Ian", 44, "Female", 20000));
         employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
-        given(employeeRepository.getEmployees())
+        given(oldEmployeeRepository.getEmployees())
                 .willReturn(employees);
 
         //when
@@ -54,7 +54,7 @@ public class EmployeesServiceTest {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1, "Ian", 44, "Female", 20000));
         employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
-        given(employeeRepository.findEmployeeById(1))
+        given(oldEmployeeRepository.findEmployeeById(1))
                 .willReturn(employees.get(0));
 
         //when
@@ -72,7 +72,7 @@ public class EmployeesServiceTest {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1, "Ian", 44, "Female", 20000));
         employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
-        given(employeeRepository.findEmployeesByPagination(1, 1))
+        given(oldEmployeeRepository.findEmployeesByPagination(1, 1))
                 .willReturn(Collections.singletonList(employees.get(0)));
 
         //when
@@ -88,7 +88,7 @@ public class EmployeesServiceTest {
         //given
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1, "Adomar", 50, "Male", 1000));
-        given(employeeRepository.findEmployeesByGender("male")).willReturn(employees);
+        given(oldEmployeeRepository.findEmployeesByGender("male")).willReturn(employees);
 
         //when
         List<Employee> actualEmployees = employeeService.findEmployeesByGender("male");
@@ -104,7 +104,7 @@ public class EmployeesServiceTest {
         //when
         employeeService.addEmployee(employeeToBeAdded);
         //then
-        verify(employeeRepository, times(1)).addEmployee(employeeToBeAdded);
+        verify(oldEmployeeRepository, times(1)).addEmployee(employeeToBeAdded);
 
 
     }
@@ -113,7 +113,7 @@ public class EmployeesServiceTest {
     public void should_update_new_employee_when_updateEmployee_given_updated_employee_details() {
         //given
         Employee updatedEmployee = new Employee(1, "Cillian", 47, "Male", 20000);
-        given(employeeRepository.updateEmployee(1, updatedEmployee)).willReturn(updatedEmployee);
+        given(oldEmployeeRepository.updateEmployee(1, updatedEmployee)).willReturn(updatedEmployee);
         //when
         Employee actualEmployee = employeeService.updateEmployee(1, updatedEmployee);
 
@@ -129,7 +129,7 @@ public class EmployeesServiceTest {
         //when
         employeeService.deleteEmployee(employeeIdToDelete);
         //then
-        verify(employeeRepository,times(1)).deleteEmployee(employeeIdToDelete);
+        verify(oldEmployeeRepository,times(1)).deleteEmployee(employeeIdToDelete);
 
     }
 
