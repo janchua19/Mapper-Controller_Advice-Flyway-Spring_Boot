@@ -27,8 +27,8 @@ public class CompanyRepository {
         defEmployees.add(employees.get(5));
         defEmployees.add(employees.get(6));
 
-        companies.add(new Company(1, "ABC", 5, abcEmployees));
-        companies.add(new Company(2, "DEF", 2, defEmployees));
+        companies.add(new Company(1, "ABC", abcEmployees.size(), abcEmployees));
+        companies.add(new Company(2, "DEF", defEmployees.size(), defEmployees));
 
     }
 
@@ -75,11 +75,9 @@ public class CompanyRepository {
         if (companyToUpdate.getCompanyName() != null) {
             company.setCompanyName(companyToUpdate.getCompanyName());
         }
-        if (companyToUpdate.getEmployeesNumber() != null) {
-            company.setEmployeesNumber(companyToUpdate.getEmployeesNumber());
-        }
         if (companyToUpdate.getEmployees() != null) {
             company.setEmployees(companyToUpdate.getEmployees());
+            company.setEmployeesNumber(companyToUpdate.getEmployees().size());
         }
         return company;
     }

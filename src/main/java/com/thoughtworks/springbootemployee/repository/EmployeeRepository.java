@@ -83,7 +83,7 @@ public class EmployeeRepository {
     }
 
     public void deleteEmployee(Integer employeeId) {
-        Employee employeeToDelete = employees.stream().filter(employee -> employeeId.equals(employeeId)).findFirst().orElse(null);
+        Employee employeeToDelete = findEmployeeById(employeeId);
         employees.remove(employeeToDelete);
 
     }
