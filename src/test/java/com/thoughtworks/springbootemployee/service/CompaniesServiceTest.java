@@ -2,7 +2,7 @@ package com.thoughtworks.springbootemployee.service;
 
 import com.thoughtworks.springbootemployee.model.Company;
 import com.thoughtworks.springbootemployee.model.Employee;
-import com.thoughtworks.springbootemployee.repository.CompanyRepository;
+import com.thoughtworks.springbootemployee.repository.OldCompanyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ public class CompaniesServiceTest {
     @InjectMocks
     CompanyService companyService;
     @Mock
-    CompanyRepository companyRepository;
+    OldCompanyRepository oldCompanyRepository;
 
 
     @Test
@@ -36,7 +36,7 @@ public class CompaniesServiceTest {
 
         companies.add(new Company(1, "ABC", 1, Collections.singletonList(employee1)));
         companies.add(new Company(2, "DEF", 1, Collections.singletonList(employee2)));
-        given(companyRepository.getAllCompanies()).willReturn(companies);
+        given(oldCompanyRepository.getAllCompanies()).willReturn(companies);
         //when
         List<Company> actualCompanies = companyService.getAllCompanies();
 
@@ -53,7 +53,7 @@ public class CompaniesServiceTest {
         //given
         Employee employee = new Employee(2, "Rhea", 44, "Female", 30000);
         Company company = new Company(1, "ABC", 1, Collections.singletonList(employee));
-        given(companyRepository.getCompanyById(1)).willReturn(company);
+        given(oldCompanyRepository.getCompanyById(1)).willReturn(company);
         //when
         Company actualCompany = companyService.getCompanyById(1);
 
@@ -70,7 +70,7 @@ public class CompaniesServiceTest {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1, "Rhea", 44, "Female", 30000));
         employees.add(new Employee(2, "John", 44, "Male", 30000));
-        given(companyRepository.getEmployeesByCompanyId(1)).willReturn(employees);
+        given(oldCompanyRepository.getEmployeesByCompanyId(1)).willReturn(employees);
         //when
         List<Employee> actualEmployees = companyService.getEmployeesByCompanyId(1);
 
@@ -88,7 +88,7 @@ public class CompaniesServiceTest {
         employees.add(new Employee(1, "Rhea", 44, "Female", 30000));
         employees.add(new Employee(2, "John", 44, "Male", 30000));
         Company company = new Company(1, "ABC", 2, employees);
-        given(companyRepository.getCompaniesByPagination(1, 1)).willReturn(Collections.singletonList(company));
+        given(oldCompanyRepository.getCompaniesByPagination(1, 1)).willReturn(Collections.singletonList(company));
         //when
         List<Company> actualCompanies = companyService.getCompaniesByPagination(1, 1);
 
@@ -108,7 +108,7 @@ public class CompaniesServiceTest {
         companyService.addCompany(companyToBeAdded);
 
         //then
-        verify(companyRepository, times(1)).addCompany(companyToBeAdded);
+        verify(oldCompanyRepository, times(1)).addCompany(companyToBeAdded);
 
     }
 
@@ -118,7 +118,7 @@ public class CompaniesServiceTest {
         Company companyToUpdate = new Company(1, "AHAHHA", 1,
                 Collections.singletonList(new Employee(1, "Cillian", 45, "Male", 222222)));
 
-        given(companyRepository.updateCompany(1, companyToUpdate)).willReturn(companyToUpdate);
+        given(oldCompanyRepository.updateCompany(1, companyToUpdate)).willReturn(companyToUpdate);
         //when
         Company actualCompany = companyService.updateCompany(1, companyToUpdate);
         //then
@@ -134,7 +134,7 @@ public class CompaniesServiceTest {
         List<Company> companies = new ArrayList<>();
         companies.add(new Company(1, "ABC", 1, Collections.singletonList(new Employee(1, "CL", 21, "Female", 12222))));
         companies.add(new Company(2, "ABCsas", 1, Collections.singletonList(new Employee(1, "Carms", 21, "Female", 12222))));
-        given(companyRepository.deleteCompany(1)).willReturn(companies);
+        given(oldCompanyRepository.deleteCompany(1)).willReturn(companies);
         //when
 
         List<Company> actualCompanies = companyService.deleteCompany(1);
