@@ -44,7 +44,7 @@ public class CompanyService {
     }
 
     public void addCompany(Company company) {
-        oldCompanyRepository.addCompany(company);
+        companyRepository.save(company);
 
     }
 
@@ -55,6 +55,6 @@ public class CompanyService {
     }
 
     public List<Company> deleteCompany(Integer companyId) {
-       return oldCompanyRepository.deleteCompany(companyId);
+        return oldCompanyRepository.deleteCompany(companyId);
     }
 }
