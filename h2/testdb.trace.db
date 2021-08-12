@@ -4,3 +4,6 @@ delete * from employee [42001-200]
 2021-08-12 13:59:17 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE *[*] FROM EMPLOYEE"; expected "identifier"; SQL statement:
 delete * from employee [42001-200]
+2021-08-12 14:50:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EMPLOYEES" not found; SQL statement:
+select * from employees [42102-200]
