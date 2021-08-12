@@ -39,8 +39,8 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
-        return oldEmployeeRepository.updateEmployee(employeeId, employeeToBeUpdated);
-
+        Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        return employeeRepository.save(employee);
     }
 
     public void deleteEmployee(Integer employeeId) {
