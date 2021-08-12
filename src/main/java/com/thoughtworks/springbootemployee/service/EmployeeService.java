@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -28,14 +29,11 @@ public class EmployeeService {
     }
 
     public List<Employee> getAllEmployees() {
-
-//        return oldEmployeeRepository.getEmployees();
         return employeeRepository.findAll();
-
     }
 
     public Employee findEmployeeById(Integer employeeId) {
-        return oldEmployeeRepository.findEmployeeById(employeeId);
+        return employeeRepository.findById(employeeId).orElse(null);
     }
 
     public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
@@ -47,10 +45,7 @@ public class EmployeeService {
     }
 
     public void addEmployee(Employee employee) {
-
-//        oldEmployeeRepository.addEmployee(employee);
         employeeRepository.save(employee);
-
     }
 
     public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
