@@ -29,7 +29,8 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployees() {
 
-        return oldEmployeeRepository.getEmployees();
+//        return oldEmployeeRepository.getEmployees();
+        return employeeRepository.findAll();
 
     }
 
