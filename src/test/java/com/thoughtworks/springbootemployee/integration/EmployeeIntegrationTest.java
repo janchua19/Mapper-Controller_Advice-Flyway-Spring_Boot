@@ -164,4 +164,20 @@ public class EmployeeIntegrationTest {
                 .andExpect(jsonPath("$[1].gender").value("Male"));
     }
 
+    @Test
+    public void should_return_employees_when_delete_employee_record_api() throws Exception{
+        //given
+        Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
+        Employee savedEmployee = employeeRepository.save(employee1);
+        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
+        employeeRepository.save(employee2);
+        Employee employee3 = new Employee(3, "Rhea", 30, "Male", 20000);
+        employeeRepository.save(employee3);
+        //when
+
+        //then
+        int id = 1;
+        mockMvc.perform(MockMvcRequestBuilders.delete("/employees/{id}", id))
+                .andExpect(status().isOk());
+    }
 }
