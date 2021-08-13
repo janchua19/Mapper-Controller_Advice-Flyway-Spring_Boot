@@ -2,6 +2,7 @@ package com.thoughtworks.springbootemployee.integration;
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
 import com.thoughtworks.springbootemployee.service.EmployeeService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,10 +22,10 @@ public class EmployeeIntegrationTest {
     @Autowired
     private EmployeeService employeeService;
 
-//    @AfterEach
-//    public void after(){
-//        employeeRepository.deleteAll();
-//    }
+    @AfterEach
+    public void after(){
+        employeeRepository.deleteAll();
+    }
 
     @Test
     void should_return_all_employees_when_call_get_all_employees_api() throws Exception {
@@ -35,7 +36,6 @@ public class EmployeeIntegrationTest {
         //then
         mockMvc.perform(MockMvcRequestBuilders.get("/employees"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].name").value("Ian"))
                 .andExpect(jsonPath("$[0].age").value(12))
                 .andExpect(jsonPath("$[0].gender").value("Male"))
@@ -122,21 +122,18 @@ public class EmployeeIntegrationTest {
     @Test
     public void should_return_employee_when_call_find_employee_by_id_api() throws Exception{
         //given
-        Employee employee = new Employee(1, "Ian", 60, "Male", 40000);
-        employeeRepository.save(employee);
+        final Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
+        Employee savedEmployee = employeeRepository.save(employee1);
+        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
+        employeeRepository.save(employee2);
         //when
-
         //then
-        int id = 1;
-
-        Employee searchEmployee = employeeService.findEmployeeById(id);
-        mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", id)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(String.valueOf(searchEmployee)))
+        Integer id = savedEmployee.getId();
+        mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Ian"))
                 .andExpect(jsonPath("$.age").value(60))
-                .andExpect(jsonPath("$.gender").value("Male"))
+                .andExpect(jsonPath("$.gender").value("male"))
                 .andExpect(jsonPath("$.salary").value(40000));
     }
 
@@ -178,6 +175,6 @@ public class EmployeeIntegrationTest {
         //then
         int id = 1;
         mockMvc.perform(MockMvcRequestBuilders.delete("/employees/{id}", id))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
     }
 }
