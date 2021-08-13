@@ -28,7 +28,8 @@ public class EmployeesController {
 
     @GetMapping(path = "/{employeeId}")
     public EmployeeResponse findById(@PathVariable Integer employeeId) {
-        return employeeMapper.toResponse(employeeService.findEmployeeById(employeeId));
+        final Employee employee = employeeService.findEmployeeById(employeeId);
+        return employeeMapper.toResponse(employee);
     }
 
     @GetMapping(params = {"pageIndex", "pageSize"})
@@ -39,19 +40,20 @@ public class EmployeesController {
 
     @GetMapping(params = "gender")
     public List<Employee> findEmployeesByGender(@RequestParam(required = true) String gender) {
-
         return employeeService.findEmployeesByGender(gender);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public EmployeeResponse addEmployee(@RequestBody EmployeeRequest employeeRequest) {
-        return employeeMapper.toResponse(employeeService.addEmployee(employeeMapper.toEntity(employeeRequest)));
+        final Employee employee = employeeService.addEmployee(employeeMapper.toEntity(employeeRequest));
+        return employeeMapper.toResponse(employee);
     }
 
     @PutMapping(path = "/{employeeId}")
     public EmployeeResponse updateEmployee(@PathVariable Integer employeeId, @RequestBody EmployeeRequest employeeRequest) {
-        return employeeMapper.toResponse(employeeService.updateEmployee(employeeId, employeeMapper.toEntity(employeeRequest)));
+        final Employee employee = employeeService.updateEmployee(employeeId, employeeMapper.toEntity(employeeRequest));
+        return employeeMapper.toResponse(employee);
     }
 
     @DeleteMapping("/{employeeId}")
