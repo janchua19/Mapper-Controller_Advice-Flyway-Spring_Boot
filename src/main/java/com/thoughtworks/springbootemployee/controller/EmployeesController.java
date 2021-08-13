@@ -42,19 +42,10 @@ public class EmployeesController {
         return employeeService.findEmployeesByGender(gender);
     }
 
-//    @PostMapping
-//    @ResponseStatus(code = HttpStatus.CREATED)
-//    public Employee addEmployee(@RequestBody Employee employee) {
-//        return employeeService.addEmployee(employee);
-//
-//    }
-
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Employee addEmployee(@RequestBody Employee employee) {
-        return employeeService.addEmployee(employee);
-        //return employeeMapper.toEntity(employee);
-
+    public Employee addEmployee(@RequestBody EmployeeRequest employeeRequest) {
+        return employeeService.addEmployee(employeeMapper.toEntity(employeeRequest));
     }
 
     @PutMapping(path = "/{employeeId}")
