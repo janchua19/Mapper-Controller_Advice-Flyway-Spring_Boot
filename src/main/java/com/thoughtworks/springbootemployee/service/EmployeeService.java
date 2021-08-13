@@ -1,5 +1,6 @@
 package com.thoughtworks.springbootemployee.service;
 
+import com.thoughtworks.springbootemployee.exception.EmployeeNotFoundException;
 import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
 import com.thoughtworks.springbootemployee.repository.OldEmployeeRepository;
@@ -24,7 +25,7 @@ public class EmployeeService {
     }
 
     public Employee findEmployeeById(Integer employeeId) {
-        return employeeRepository.findById(employeeId).orElse(null);
+        return employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee id not found."));
     }
 
     public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
@@ -35,26 +36,15 @@ public class EmployeeService {
         return employeeRepository.findByGender(gender);
     }
 
-    public void addEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
-        Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee id not found"));
         return employeeRepository.save(Objects.requireNonNull(updateEmployeeInformation(employee,
                 employeeToBeUpdated)));
     }
-//    public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
-//    Employee employee = employeeRepository.findById(employeeId).orElse(null);
-//    Employee updatedEmployee = new Employee();
-//    if (employee != null) {
-//        updatedEmployee = updateEmployeeInformation(employee, employeeToBeUpdated);
-//
-//    }
-//
-//    return updatedEmployee;
-
-//}
 
     private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
         if (employeeToBeUpdated.getName() != null) {

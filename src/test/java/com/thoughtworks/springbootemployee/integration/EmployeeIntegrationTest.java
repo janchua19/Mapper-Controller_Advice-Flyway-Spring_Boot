@@ -41,28 +41,28 @@ public class EmployeeIntegrationTest {
                 .andExpect(jsonPath("$[0].salary").value(2000));
     }
 
-//    @Test
-//    void should_create_employee_when_call_add_Employee_api() throws Exception {
-//        //given
-//        String employee = "{\n" +
-//                "    \"id\" : 1,\n" +
-//                "    \"name\" : \"Jan\",\n" +
-//                "    \"age\" : 21,\n" +
-//                "    \"gender\" : \"Male\",\n" +
-//                "    \"salary\" : 30000\n" +
-//                "}";
-//
-//        //when
-//        //then
-//        mockMvc.perform(MockMvcRequestBuilders.post("/employees")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(employee))
-//                .andExpect(status().isCreated())
-//                .andExpect(jsonPath("$.name").value("Jan"))
-//                .andExpect(jsonPath("$.age").value("21"))
-//                .andExpect(jsonPath("$.gender").value("male"))
-//                .andExpect(jsonPath("$.salary").value("30000"));
-//    }
+    @Test
+    void should_create_employee_when_call_add_Employee_api() throws Exception {
+        //given
+        String employee = "{\n" +
+                "    \"id\" : 1,\n" +
+                "    \"name\" : \"Jan\",\n" +
+                "    \"age\" : 21,\n" +
+                "    \"gender\" : \"Male\",\n" +
+                "    \"salary\" : 30000\n" +
+                "}";
+
+        //when
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.post("/employees")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(employee))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name").value("Jan"))
+                .andExpect(jsonPath("$.age").value("21"))
+                .andExpect(jsonPath("$.gender").value("male"))
+                .andExpect(jsonPath("$.salary").value("30000"));
+    }
 
     @Test
     public void should_update_employee_when_call_update_employee_api() throws Exception {
