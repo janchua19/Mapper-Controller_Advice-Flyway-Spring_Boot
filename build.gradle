@@ -21,6 +21,7 @@ dependencies {
     testCompile "org.mockito:mockito-core:3.4.0"
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '6.5.3'
 }
 
 group = 'com.thoughtworks'
