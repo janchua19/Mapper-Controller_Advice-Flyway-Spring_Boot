@@ -14,4 +14,10 @@ public class GlobalControllerAdvice {
     public ErrorResponse employeeNotFoundExceptionHandling(EmployeeNotFoundException employeeNotFoundException){
         return new ErrorResponse(employeeNotFoundException.getMessage());
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler
+    public ErrorResponse companyNotFoundExceptionHandling(EmployeeNotFoundException employeeNotFoundException){
+        return new ErrorResponse(employeeNotFoundException.getMessage());
+    }
 }
