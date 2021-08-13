@@ -1,19 +1,21 @@
-package com.thoughtworks.springbootemployee.model;
+package com.thoughtworks.springbootemployee.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Locale;
 
+@Entity
+public class Employee {
 
-public class EmployeeRequest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
     private Integer age;
     private String gender;
     private Integer salary;
     private Integer companyId;
 
-    public EmployeeRequest(String name, Integer age, String gender, Integer salary, Integer companyId) {
+    public Employee(String name, Integer age, String gender, Integer salary, Integer companyId) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -21,14 +23,19 @@ public class EmployeeRequest {
         this.companyId = companyId;
     }
 
-//    public EmployeeRequest(String name, Integer age, String gender, Integer salary) {
-//        this.name = name;
-//        this.age = age;
-//        this.gender = gender;
-//        this.salary = salary;
-//    }
+    public Employee(Integer id, String name, Integer age, String gender, Integer salary) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.salary = salary;
+    }
 
-    public EmployeeRequest() {
+    public Employee() {
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -45,6 +52,10 @@ public class EmployeeRequest {
 
     public Integer getSalary() {
         return salary;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setName(String name) {

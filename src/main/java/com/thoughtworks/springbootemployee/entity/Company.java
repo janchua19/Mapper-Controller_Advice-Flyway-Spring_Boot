@@ -1,11 +1,12 @@
-package com.thoughtworks.springbootemployee.model;
+package com.thoughtworks.springbootemployee.entity;
 
 import javax.persistence.*;
 import java.util.List;
 
-
-public class CompanyResponse {
-
+@Entity
+public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String companyName;
     private Integer employeesNumber;
@@ -13,14 +14,14 @@ public class CompanyResponse {
     private List<Employee> employees;
 
 
-    public CompanyResponse(Integer id, String companyName, Integer employeesNumber, List<Employee> employees) {
+    public Company(Integer id, String companyName, Integer employeesNumber, List<Employee> employees) {
         this.id = id;
         this.companyName = companyName;
         this.employeesNumber = employeesNumber;
         this.employees = employees;
     }
 
-    public CompanyResponse(){}
+    public Company(){}
     public Integer getId() {
         return id;
     }
