@@ -90,30 +90,30 @@ public class EmployeeIntegrationTest {
                 .andExpect(jsonPath("$.salary").value(30000));
     }
 
-//    @Test
-//    void should_return_all_employees_By_Gender_when_call_get_All_Employees_By_Gender_employees_api() throws Exception
-//    {
-//        //given
-//        Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
-//        Employee savedEmployee = employeeRepository.save(employee1);
-//        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
-//        employeeRepository.save(employee2);
-//        Employee employee3 = new Employee(3, "Rhea", 30, "Male", 20000);
-//        employeeRepository.save(employee3);
-//
-//        //when
-//        //then
-//
-//        String gender = savedEmployee.getGender();
-//        mockMvc.perform(MockMvcRequestBuilders.get("/employees/?gender={gender}",gender))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$[0].name").value("Ian"))
-//                .andExpect(jsonPath("$[0].age").value(60))
-//                .andExpect(jsonPath("$[0].gender").value("Male"))
-//                .andExpect(jsonPath("$[0].salary").value(40000))
-//                .andExpect(jsonPath("$[1].name").value("Leo"))
-//                .andExpect(jsonPath("$[1].age").value(30))
-//                .andExpect(jsonPath("$[1].gender").value("Male"))
-//                .andExpect(jsonPath("$[1].salary").value(20000));
-//    }
+    @Test
+    void should_return_all_employees_By_Gender_when_call_get_All_Employees_By_Gender_employees_api() throws Exception
+    {
+        //given
+        Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
+        Employee savedEmployee = employeeRepository.save(employee1);
+        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
+        employeeRepository.save(employee2);
+        Employee employee3 = new Employee(3, "Rhea", 30, "Male", 20000);
+        employeeRepository.save(employee3);
+
+        //when
+        //then
+
+        String gender = savedEmployee.getGender();
+        mockMvc.perform(MockMvcRequestBuilders.get("/employees/?gender={gender}",gender))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Ian"))
+                .andExpect(jsonPath("$[0].age").value(60))
+                .andExpect(jsonPath("$[0].gender").value("Male"))
+                .andExpect(jsonPath("$[0].salary").value(40000))
+                .andExpect(jsonPath("$[1].name").value("Leo"))
+                .andExpect(jsonPath("$[1].age").value(45))
+                .andExpect(jsonPath("$[1].gender").value("Male"))
+                .andExpect(jsonPath("$[1].salary").value(30000));
+    }
 }
