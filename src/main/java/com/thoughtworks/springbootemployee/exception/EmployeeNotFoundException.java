@@ -5,6 +5,7 @@ public class EmployeeNotFoundException extends RuntimeException {
 
     public EmployeeNotFoundException(String message){
         this.message = message;
+        //super(message);   //can also use this
     }
 
     @Override

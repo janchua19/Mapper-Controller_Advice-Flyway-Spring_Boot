@@ -1,6 +1,7 @@
 package com.thoughtworks.springbootemployee.integration;
 import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
+import com.thoughtworks.springbootemployee.service.EmployeeService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class EmployeeIntegrationTest {
     private MockMvc mockMvc;
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private EmployeeService employeeService;
 
 //    @AfterEach
 //    public void after(){
@@ -117,4 +120,50 @@ public class EmployeeIntegrationTest {
                 .andExpect(jsonPath("$[1].gender").value("Male"))
                 .andExpect(jsonPath("$[1].salary").value(30000));
     }
+
+    @Test
+    public void should_return_employee_when_call_find_employee_by_id_api() throws Exception{
+        //given
+        Employee employee = new Employee(1, "Ian", 60, "Male", 40000);
+        employeeRepository.save(employee);
+        //when
+
+        //then
+        int id = 1;
+
+        Employee searchEmployee = employeeService.findEmployeeById(id);
+        mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(String.valueOf(searchEmployee)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Ian"))
+                .andExpect(jsonPath("$.age").value(60))
+                .andExpect(jsonPath("$.gender").value("Male"))
+                .andExpect(jsonPath("$.salary").value(40000));
+    }
+//
+//    @Test
+//    public void should_return_page_and_size_when_get_employees_by_pagination_api() throws Exception{
+//        //given
+//        Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
+//        Employee savedEmployee = employeeRepository.save(employee1);
+//        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
+//        employeeRepository.save(employee2);
+//        Employee employee3 = new Employee(3, "Rhea", 30, "Male", 20000);
+//        employeeRepository.save(employee3);
+//        //when
+//
+//        //then
+//        int pageIndex = 1;
+//        int pageSize = 5;
+//        mockMvc.perform(MockMvcRequestBuilders.get("/employees")
+//                        .param("pageIndex", String.valueOf(pageIndex))
+//                        .param("pageSize", String.valueOf(pageSize)))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$[0].name").value("Ian"))
+//                .andExpect(jsonPath("$[1].name").value("Leo"))
+//                .andExpect(jsonPath("$[0].gender").value("Male"))
+//                .andExpect(jsonPath("$[1].gender").value("Male"));
+//    }
+
 }
