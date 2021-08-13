@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class EmployeeService {
@@ -38,21 +39,22 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-//    public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
-//        Employee employee = employeeRepository.findById(employeeId).orElse(null);
-//        return employeeRepository.save(employee);
-//    }
     public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
-    Employee employee = employeeRepository.findById(employeeId).orElse(null);
-    Employee updatedEmployee = new Employee();
-    if (employee != null) {
-        updatedEmployee = updateEmployeeInformation(employee, employeeToBeUpdated);
-
+        Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        return employeeRepository.save(Objects.requireNonNull(updateEmployeeInformation(employee,
+                employeeToBeUpdated)));
     }
+//    public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
+//    Employee employee = employeeRepository.findById(employeeId).orElse(null);
+//    Employee updatedEmployee = new Employee();
+//    if (employee != null) {
+//        updatedEmployee = updateEmployeeInformation(employee, employeeToBeUpdated);
+//
+//    }
+//
+//    return updatedEmployee;
 
-    return updatedEmployee;
-
-}
+//}
 
     private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
         if (employeeToBeUpdated.getName() != null) {

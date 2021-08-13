@@ -45,6 +45,7 @@ public class EmployeeIntegrationTest {
 //    void should_create_employee_when_call_add_Employee_api() throws Exception {
 //        //given
 //        String employee = "{\n" +
+//                "    \"id\" : 1,\n" +
 //                "    \"name\" : \"Jan\",\n" +
 //                "    \"age\" : 21,\n" +
 //                "    \"gender\" : \"Male\",\n" +
@@ -62,7 +63,7 @@ public class EmployeeIntegrationTest {
 //                .andExpect(jsonPath("$.gender").value("male"))
 //                .andExpect(jsonPath("$.salary").value("30000"));
 //    }
-//
+
     @Test
     public void should_update_employee_when_call_update_employee_api() throws Exception {
         //given
