@@ -139,29 +139,29 @@ public class EmployeeIntegrationTest {
                 .andExpect(jsonPath("$.gender").value("Male"))
                 .andExpect(jsonPath("$.salary").value(40000));
     }
-//
-//    @Test
-//    public void should_return_page_and_size_when_get_employees_by_pagination_api() throws Exception{
-//        //given
-//        Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
-//        Employee savedEmployee = employeeRepository.save(employee1);
-//        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
-//        employeeRepository.save(employee2);
-//        Employee employee3 = new Employee(3, "Rhea", 30, "Male", 20000);
-//        employeeRepository.save(employee3);
-//        //when
-//
-//        //then
-//        int pageIndex = 1;
-//        int pageSize = 5;
-//        mockMvc.perform(MockMvcRequestBuilders.get("/employees")
-//                        .param("pageIndex", String.valueOf(pageIndex))
-//                        .param("pageSize", String.valueOf(pageSize)))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$[0].name").value("Ian"))
-//                .andExpect(jsonPath("$[1].name").value("Leo"))
-//                .andExpect(jsonPath("$[0].gender").value("Male"))
-//                .andExpect(jsonPath("$[1].gender").value("Male"));
-//    }
+
+    @Test
+    public void should_return_page_and_size_when_get_employees_by_pagination_api() throws Exception{
+        //given
+        Employee employee1 = new Employee(1, "Ian", 60, "Male", 40000);
+        Employee savedEmployee = employeeRepository.save(employee1);
+        Employee employee2 = new Employee(2, "Leo", 45, "Male", 30000);
+        employeeRepository.save(employee2);
+        Employee employee3 = new Employee(3, "Rhea", 30, "Male", 20000);
+        employeeRepository.save(employee3);
+        //when
+
+        //then
+        int pageIndex = 1;
+        int pageSize = 5;
+        mockMvc.perform(MockMvcRequestBuilders.get("/employees")
+                        .param("pageIndex", String.valueOf(pageIndex))
+                        .param("pageSize", String.valueOf(pageSize)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Ian"))
+                .andExpect(jsonPath("$[1].name").value("Leo"))
+                .andExpect(jsonPath("$[0].gender").value("Male"))
+                .andExpect(jsonPath("$[1].gender").value("Male"));
+    }
 
 }
