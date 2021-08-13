@@ -19,14 +19,6 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-
-    public CompanyService(OldCompanyRepository oldCompanyRepository) {
-        this.oldCompanyRepository = oldCompanyRepository;
-    }
-
-    public CompanyService() {
-    }
-
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
     }
