@@ -13,8 +13,7 @@ public class EmployeeResponse {
     private String gender;
     private Integer salary;
 
-    public EmployeeResponse(Integer id, String name, Integer age, String gender, Integer salary) {
-        this.id = id;
+    public EmployeeResponse(String name, Integer age, String gender, Integer salary) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -24,9 +23,9 @@ public class EmployeeResponse {
     public EmployeeResponse() {
     }
 
-    public Integer getId() {
-        return id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
 
     public String getName() {
         return name;
@@ -44,9 +43,9 @@ public class EmployeeResponse {
         return salary;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public void setName(String name) {
         this.name = name;

@@ -17,7 +17,6 @@ public class Company {
     public Company(Integer id, String companyName, Integer employeesNumber, List<Employee> employees) {
         this.id = id;
         this.companyName = companyName;
-        this.employeesNumber = employeesNumber;
         this.employees = employees;
     }
 
@@ -31,10 +30,6 @@ public class Company {
         return companyName;
     }
 
-    public Integer getEmployeesNumber() {
-        return employeesNumber;
-    }
-
     public List<Employee> getEmployees() {
         return employees;
     }
@@ -45,10 +40,6 @@ public class Company {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public void setEmployeesNumber(Integer employeesNumber) {
-        this.employeesNumber = employeesNumber;
     }
 
     public void setEmployees(List<Employee> employees) {

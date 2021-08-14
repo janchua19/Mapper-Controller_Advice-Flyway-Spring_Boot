@@ -24,7 +24,6 @@ public class CompaniesController {
     @GetMapping("/{companyId}")
     public Company getCompanyById(@PathVariable Integer companyId) {
         return companyService.getCompanyById(companyId);
-
     }
 
     @GetMapping("/{companyId}/employees")
@@ -35,15 +34,12 @@ public class CompaniesController {
     @GetMapping(params = {"pageIndex", "pageSize"})
     public List<Company> getCompaniesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
         return companyService.getCompaniesByPagination(pageIndex, pageSize);
-
-
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public void addCompany(@RequestBody Company company) {
         companyService.addCompany(company);
-
     }
 
     @PutMapping(path = "/{companyId}")
@@ -56,5 +52,4 @@ public class CompaniesController {
     public void deleteCompany(@PathVariable Integer companyId) {
         companyService.deleteCompany(companyId);
     }
-
 }

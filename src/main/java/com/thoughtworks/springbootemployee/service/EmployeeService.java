@@ -21,7 +21,7 @@ public class EmployeeService {
     }
 
     public Employee findEmployeeById(Integer employeeId) {
-        return employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee id not found."));
+        return employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee not found."));
     }
 
     public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
@@ -37,7 +37,7 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
-        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee id not found"));
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
         return employeeRepository.save(Objects.requireNonNull(updateEmployeeInformation(employee,
                 employeeToBeUpdated)));
     }
@@ -55,6 +55,9 @@ public class EmployeeService {
         }
         if (employeeToBeUpdated.getSalary() != null) {
             employee.setSalary(employeeToBeUpdated.getSalary());
+        }
+        if (employeeToBeUpdated.getCompanyId() != null) {
+            employee.setCompanyId(employeeToBeUpdated.getCompanyId());
         }
         return employee;
     }
