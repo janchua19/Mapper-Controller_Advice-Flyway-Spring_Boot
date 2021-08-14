@@ -22,6 +22,7 @@ public class Company {
     }
 
     public Company(){}
+
     public Integer getId() {
         return id;
     }

@@ -4,7 +4,6 @@ import com.thoughtworks.springbootemployee.entity.Company;
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.exception.CompanyNotFoundException;
 import com.thoughtworks.springbootemployee.repository.CompanyRepository;
-import com.thoughtworks.springbootemployee.repository.OldCompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,6 @@ import java.util.Objects;
 
 @Service
 public class CompanyService {
-
-    @Autowired
-    private OldCompanyRepository oldCompanyRepository;
-
     @Autowired
     private CompanyRepository companyRepository;
 
@@ -26,11 +21,11 @@ public class CompanyService {
     }
 
     public Company getCompanyById(Integer companyId) {
-        return companyRepository.findById(companyId).orElse(null);
+        return companyRepository.findById(companyId).orElseThrow(() -> new CompanyNotFoundException("Company not found."));
     }
 
     public List<Employee> getEmployeesByCompanyId(Integer companyId) {
-        Company company = companyRepository.findById(companyId).orElse(null);
+        Company company = companyRepository.findById(companyId).orElseThrow(() -> new CompanyNotFoundException("Company not found."));
         return company.getEmployees();
     }
 
@@ -40,12 +35,11 @@ public class CompanyService {
 
     public void addCompany(Company company) {
         companyRepository.save(company);
-
     }
 
 
     public Company updateCompany(Integer companyId, Company companyToUpdate) {
-        Company company = companyRepository.findById(companyId).orElseThrow(() -> new CompanyNotFoundException("Company id not found"));
+        Company company = companyRepository.findById(companyId).orElseThrow(() -> new CompanyNotFoundException("Company not found"));
         return companyRepository.save(Objects.requireNonNull(updateCompanyInformation(company,
                 companyToUpdate)));
     }
@@ -60,7 +54,7 @@ public class CompanyService {
         return company;
     }
 
-    public List<Company> deleteCompany(Integer companyId) {
-        return oldCompanyRepository.deleteCompany(companyId);
+    public void deleteCompany(Integer companyId) {
+        companyRepository.deleteById(companyId);
     }
 }
