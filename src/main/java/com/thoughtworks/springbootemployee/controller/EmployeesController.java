@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,10 +21,12 @@ public class EmployeesController {
     @Autowired
     private EmployeeMapper employeeMapper;
 
-
     @GetMapping
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    public List<EmployeeResponse> getAllEmployees() {
+        List<Employee> employees = employeeService.getAllEmployees();
+        List<EmployeeResponse> employeeResponses = new ArrayList<>();
+        employees.forEach(employee ->employeeResponses.add(employeeMapper.toResponse(employee)));
+        return employeeResponses;
     }
 
     @GetMapping(path = "/{employeeId}")
