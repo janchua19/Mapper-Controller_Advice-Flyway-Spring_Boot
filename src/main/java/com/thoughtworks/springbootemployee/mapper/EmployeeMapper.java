@@ -1,5 +1,6 @@
 package com.thoughtworks.springbootemployee.mapper;
 
+import com.thoughtworks.springbootemployee.entity.Company;
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.dto.EmployeeRequest;
 import com.thoughtworks.springbootemployee.dto.EmployeeResponse;
@@ -20,6 +21,11 @@ public class EmployeeMapper {
         BeanUtils.copyProperties(employee,employeeResponse);
 
         return employeeResponse;
+    }
+
+    public String toDisplay(Integer employeeId) {
+        String message = "Employee with id number: " + employeeId + " is now terminated.";
+        return message;
     }
 }
 

@@ -7825,3 +7825,9 @@ select company0_.id as id1_0_, company0_.company_name as company_2_0_, company0_
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2021-08-14 18:52:43 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (EMPLOYEE: ""AGE"" INT)"; SQL statement:
+INSERT INTO "PUBLIC"."EMPLOYEE"("ID","NAME","AGE","SALARY","COMPANY_ID","GENDER")VALUES(?,?,?,?,?,?) [22018-200]
+2021-08-14 18:52:43 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (EMPLOYEE: ""AGE"" INT)"; SQL statement:
+INSERT INTO "PUBLIC"."EMPLOYEE"("ID","NAME","AGE","SALARY","COMPANY_ID","GENDER")VALUES(?,?,?,?,?,?) [22018-200]
