@@ -30,7 +30,7 @@ public class CompanyService {
     }
 
     public List<Company> getCompaniesByPagination(Integer pageIndex, Integer pageSize) {
-        return companyRepository.findAll(PageRequest.of(pageIndex -1, pageSize)).getContent();
+        return companyRepository.findAll(PageRequest.of(pageIndex - 1, pageSize)).getContent();
     }
 
     public void addCompany(Company company) {
@@ -39,9 +39,9 @@ public class CompanyService {
 
 
     public Company updateCompany(Integer companyId, Company companyToUpdate) {
-        Company company = companyRepository.findById(companyId).orElseThrow(() -> new CompanyNotFoundException("Company not found"));
-        return companyRepository.save(Objects.requireNonNull(updateCompanyInformation(company,
-                companyToUpdate)));
+        Company company = companyRepository.findById(companyId)
+                .orElseThrow(() -> new CompanyNotFoundException("Company not found"));
+        return companyRepository.save(Objects.requireNonNull(updateCompanyInformation(company, companyToUpdate)));
     }
 
     private Company updateCompanyInformation(Company company, Company companyToUpdate) {

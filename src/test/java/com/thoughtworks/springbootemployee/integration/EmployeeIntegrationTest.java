@@ -38,7 +38,7 @@ public class EmployeeIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("Ian"))
                 .andExpect(jsonPath("$[0].age").value(12))
-                .andExpect(jsonPath("$[0].gender").value("Male"))
+                .andExpect(jsonPath("$[0].gender").value("male"))
                 .andExpect(jsonPath("$[0].salary").value(2000));
     }
 
@@ -111,11 +111,11 @@ public class EmployeeIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("Ian"))
                 .andExpect(jsonPath("$[0].age").value(60))
-                .andExpect(jsonPath("$[0].gender").value("Male"))
+                .andExpect(jsonPath("$[0].gender").value("male"))
                 .andExpect(jsonPath("$[0].salary").value(40000))
                 .andExpect(jsonPath("$[1].name").value("Leo"))
                 .andExpect(jsonPath("$[1].age").value(45))
-                .andExpect(jsonPath("$[1].gender").value("Male"))
+                .andExpect(jsonPath("$[1].gender").value("male"))
                 .andExpect(jsonPath("$[1].salary").value(30000));
     }
 
@@ -157,8 +157,8 @@ public class EmployeeIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("Ian"))
                 .andExpect(jsonPath("$[1].name").value("Leo"))
-                .andExpect(jsonPath("$[0].gender").value("Male"))
-                .andExpect(jsonPath("$[1].gender").value("Male"));
+                .andExpect(jsonPath("$[0].gender").value("male"))
+                .andExpect(jsonPath("$[1].gender").value("male"));
     }
 
     @Test

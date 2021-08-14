@@ -1,5 +1,6 @@
 package com.thoughtworks.springbootemployee.controller;
 
+import com.thoughtworks.springbootemployee.entity.Company;
 import com.thoughtworks.springbootemployee.mapper.EmployeeMapper;
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.dto.EmployeeRequest;
@@ -60,7 +61,7 @@ public class EmployeesController {
 
     @PutMapping(path = "/{employeeId}")
     public EmployeeResponse updateEmployee(@PathVariable Integer employeeId, @RequestBody EmployeeRequest employeeRequest) {
-        final Employee employee = employeeService.updateEmployee(employeeId, employeeMapper.toEntity(employeeRequest));
+        Employee employee = employeeService.updateEmployee(employeeId, employeeMapper.toEntity(employeeRequest));
         return employeeMapper.toResponse(employee);
     }
 
