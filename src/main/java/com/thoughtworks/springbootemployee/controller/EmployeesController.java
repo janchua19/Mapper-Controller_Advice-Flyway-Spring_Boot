@@ -44,8 +44,11 @@ public class EmployeesController {
     }
 
     @GetMapping(params = "gender")
-    public List<Employee> findEmployeesByGender(@RequestParam(required = true) String gender) {
-        return employeeService.findEmployeesByGender(gender);
+    public List<EmployeeResponse> findEmployeesByGender(@RequestParam(required = true) String gender) {
+        List<Employee> employees = employeeService.findEmployeesByGender(gender);
+        List<EmployeeResponse> employeeResponses = new ArrayList<>();
+        employees.forEach(employee -> employeeResponses.add(employeeMapper.toResponse(employee)));
+        return employeeResponses;
     }
 
     @PostMapping
