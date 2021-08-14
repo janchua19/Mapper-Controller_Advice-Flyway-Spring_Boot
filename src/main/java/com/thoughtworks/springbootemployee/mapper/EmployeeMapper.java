@@ -1,9 +1,8 @@
 package com.thoughtworks.springbootemployee.mapper;
 
-import com.thoughtworks.springbootemployee.entity.Company;
-import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.dto.EmployeeRequest;
 import com.thoughtworks.springbootemployee.dto.EmployeeResponse;
+import com.thoughtworks.springbootemployee.entity.Employee;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +23,7 @@ public class EmployeeMapper {
     }
 
     public String toDisplay(Integer employeeId) {
-        String message = "Employee with id number: " + employeeId + " is now terminated.";
-        return message;
+        return "Employee with id number: " + employeeId + " is now terminated.";
     }
 }
 

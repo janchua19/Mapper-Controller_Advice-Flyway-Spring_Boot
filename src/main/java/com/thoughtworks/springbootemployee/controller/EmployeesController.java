@@ -1,10 +1,9 @@
 package com.thoughtworks.springbootemployee.controller;
 
-import com.thoughtworks.springbootemployee.entity.Company;
-import com.thoughtworks.springbootemployee.mapper.EmployeeMapper;
-import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.dto.EmployeeRequest;
 import com.thoughtworks.springbootemployee.dto.EmployeeResponse;
+import com.thoughtworks.springbootemployee.entity.Employee;
+import com.thoughtworks.springbootemployee.mapper.EmployeeMapper;
 import com.thoughtworks.springbootemployee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,11 +63,6 @@ public class EmployeesController {
         Employee employee = employeeService.updateEmployee(employeeId, employeeMapper.toEntity(employeeRequest));
         return employeeMapper.toResponse(employee);
     }
-
-//    @DeleteMapping("/{employeeId}")
-//    public void deleteEmployee(@PathVariable Integer employeeId) {
-//        employeeService.deleteEmployee(employeeId);
-//    }
 
     @DeleteMapping("/{employeeId}")
     public String deleteEmployee(@PathVariable Integer employeeId) {

@@ -1,11 +1,5 @@
 package com.thoughtworks.springbootemployee.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-
 public class EmployeeRequest {
     private String name;
     private Integer age;
@@ -20,13 +14,6 @@ public class EmployeeRequest {
         this.salary = salary;
         this.companyId = companyId;
     }
-
-//    public EmployeeRequest(String name, Integer age, String gender, Integer salary) {
-//        this.name = name;
-//        this.age = age;
-//        this.gender = gender;
-//        this.salary = salary;
-//    }
 
     public EmployeeRequest() {
     }
