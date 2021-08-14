@@ -36,9 +36,11 @@ public class EmployeesController {
     }
 
     @GetMapping(params = {"pageIndex", "pageSize"})
-    public List<Employee> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
-
-        return employeeService.findEmployeesByPagination(pageIndex, pageSize);
+    public List<EmployeeResponse> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
+        List<Employee> employees = employeeService.findEmployeesByPagination(pageIndex, pageSize);
+        List<EmployeeResponse> employeeResponses = new ArrayList<>();
+        employees.forEach(employee -> employeeResponses.add(employeeMapper.toResponse(employee)));
+        return employeeResponses;
     }
 
     @GetMapping(params = "gender")
